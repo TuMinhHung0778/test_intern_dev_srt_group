@@ -12,16 +12,6 @@ The project uses **React + Vite** for the frontend, **Node.js + Express** for th
 
 https://test-intern-dev-srt-group-1.onrender.com/
 
----
-
-## 📂 Source Code
-
-GitHub Repository:
-
-https://github.com/TuMinhHung0778/test_intern_dev_srt_group
-
----
-
 ## ✨ Features
 
 - Display all tasks

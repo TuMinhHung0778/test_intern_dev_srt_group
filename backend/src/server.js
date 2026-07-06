@@ -14,23 +14,27 @@ const app = express();
 // middlewares
 app.use(express.json());
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://127.0.0.1:5173",
-  process.env.CLIENT_URL,
-].filter(Boolean);
+// const allowedOrigins = [
+//   "http://localhost:5173",
+//   "http://127.0.0.1:5173",
+//   process.env.CLIENT_URL,
+// ].filter(Boolean);
 
-app.use(
-  cors({
-    origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      }
+// app.use(
+//   cors({
+//     origin(origin, callback) {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         return callback(null, true);
+//       }
 
-      return callback(new Error("Not allowed by CORS"));
-    },
-  })
-);
+//       return callback(new Error("Not allowed by CORS"));
+//     },
+//   }),
+// );
+
+if (process.env.NODE_ENV != "production") {
+  app.use(cors({ origin: "http://localhost:5173" }));
+}
 
 app.use("/api/tasks", taskRoute);
 

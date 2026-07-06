@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "35.srt_group_test": "file:..",
     "cors": "^2.8.5",
     "daily-list-project": "file:..",
     "dotenv": "^17.2.3",

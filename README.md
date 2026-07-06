@@ -67,8 +67,6 @@ MONGO_URI=mongodb://127.0.0.1:27017/srt_todo
 NODE_ENV=development
 ```
 
-Nếu dùng MongoDB Atlas, thay `MONGO_URI` bằng connection string của Atlas.
-
 ### 2. Cài frontend
 
 ```bash
@@ -111,68 +109,6 @@ cd frontend
 npm run build
 ```
 
-## Deploy
-
-### Deploy backend lên Render
-
-1. Đẩy source code lên GitHub.
-2. Vào Render, chọn **New** > **Web Service**.
-3. Kết nối repository GitHub của dự án.
-4. Cấu hình service:
-
-```txt
-Root Directory: backend
-Runtime: Node
-Build Command: npm install
-Start Command: npm start
-```
-
-5. Thêm Environment Variables trên Render:
-
-```env
-NODE_ENV=production
-PORT=5001
-MONGO_URI=<connection-string-mongodb-atlas>
-CLIENT_URL=https://<ten-du-an-frontend>.vercel.app
-```
-
-Render có thể tự cấp port qua biến `PORT`, nên nếu Render đã có sẵn `PORT` thì không cần tự thêm.
-
-Sau khi deploy xong, backend sẽ có dạng:
-
-```txt
-https://<ten-backend>.onrender.com
-```
-
-API sẽ là:
-
-```txt
-https://<ten-backend>.onrender.com/api/tasks
-```
-
-### Deploy frontend lên Vercel
-
-1. Vào Vercel, chọn **Add New Project**.
-2. Import repository GitHub.
-3. Cấu hình project:
-
-```txt
-Root Directory: frontend
-Framework Preset: Vite
-Build Command: npm run build
-Output Directory: dist
-```
-
-4. Thêm Environment Variable trên Vercel:
-
-```env
-VITE_API_URL=https://<ten-backend>.onrender.com/api
-```
-
-5. Deploy frontend.
-6. Copy domain Vercel vừa tạo và cập nhật lại biến `CLIENT_URL` bên Render.
-7. Redeploy backend trên Render để CORS nhận domain frontend mới.
-
 ## API endpoints
 
 Base URL:
@@ -181,12 +117,12 @@ Base URL:
 http://localhost:5001/api
 ```
 
-| Method | Endpoint | Mô tả |
-| --- | --- | --- |
-| GET | `/tasks?filter=today` | Lấy danh sách công việc |
-| POST | `/tasks` | Tạo công việc mới |
-| PUT | `/tasks/:id` | Cập nhật công việc |
-| DELETE | `/tasks/:id` | Xóa công việc |
+| Method | Endpoint              | Mô tả                   |
+| ------ | --------------------- | ----------------------- |
+| GET    | `/tasks?filter=today` | Lấy danh sách công việc |
+| POST   | `/tasks`              | Tạo công việc mới       |
+| PUT    | `/tasks/:id`          | Cập nhật công việc      |
+| DELETE | `/tasks/:id`          | Xóa công việc           |
 
 Giá trị `filter` hỗ trợ: `today`, `week`, `month`, `all`.
 
@@ -217,4 +153,5 @@ Ví dụ body cập nhật trạng thái:
 ## Ghi chú
 
 Trong môi trường development, backend chỉ mở CORS cho frontend tại `http://localhost:5173`.
+
 # test_intern_dev_srt_group

@@ -1,30 +1,81 @@
 # SRT Group Intern Developer Test - Todo List
 
-Ứng dụng quản lý công việc đơn giản, gồm frontend React và backend Node.js/Express kết nối MongoDB.
+A simple **Todo List** application built for the **Intern Developer Technical Test** at **SRT Group**.
 
-## Chức năng
+The project uses **React + Vite** for the frontend, **Node.js + Express** for the backend, and **MongoDB Atlas** as the database. It provides full CRUD functionality, search, filtering, pagination, and a responsive user interface.
 
-- Hiển thị danh sách công việc.
-- Thêm công việc mới.
-- Chỉnh sửa nội dung công việc.
-- Xóa công việc.
-- Đánh dấu hoàn thành/chưa hoàn thành.
-- Tìm kiếm theo nội dung công việc.
-- Lọc theo trạng thái: tất cả, đang làm, hoàn thành.
-- Lọc theo thời gian tạo: hôm nay, tuần này, tháng này, tất cả.
-- Phân trang danh sách công việc.
-- Giao diện responsive cho desktop và mobile.
+---
 
-## Công nghệ sử dụng
+## 🌐 Live Demo
 
-- Frontend: React, Vite, Tailwind CSS, Axios, Lucide React, Sonner.
-- Backend: Node.js, Express, Mongoose.
-- Database: MongoDB.
+**Website**
 
-## Cấu trúc thư mục
+https://test-intern-dev-srt-group-1.onrender.com/
 
-```txt
-35.SRT_GROUP_TEST/
+---
+
+## 📂 Source Code
+
+GitHub Repository:
+
+https://github.com/TuMinhHung0778/test_intern_dev_srt_group
+
+---
+
+## ✨ Features
+
+- Display all tasks
+- Create a new task
+- Edit an existing task
+- Delete a task
+- Mark a task as completed or active
+- Search tasks by title
+- Filter tasks by status:
+  - All
+  - Active
+  - Completed
+- Filter tasks by creation date:
+  - Today
+  - This Week
+  - This Month
+  - All
+- Pagination
+- Responsive design for desktop and mobile devices
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- React
+- Vite
+- Tailwind CSS
+- Axios
+- Lucide React
+- Sonner
+
+### Backend
+
+- Node.js
+- Express.js
+- Mongoose
+
+### Database
+
+- MongoDB Atlas
+
+### Deployment
+
+- Render
+
+---
+
+## 📁 Project Structure
+
+```text
+test_intern_dev_srt_group/
+│
 ├── backend/
 │   ├── src/
 │   │   ├── config/
@@ -32,7 +83,9 @@
 │   │   ├── models/
 │   │   ├── routes/
 │   │   └── server.js
+│   ├── .env
 │   └── package.json
+│
 ├── frontend/
 │   ├── src/
 │   │   ├── components/
@@ -40,118 +93,224 @@
 │   │   ├── pages/
 │   │   ├── App.jsx
 │   │   └── main.jsx
+│   ├── .env
 │   └── package.json
+│
 └── README.md
 ```
 
-## Yêu cầu môi trường
+---
 
-- Node.js 18 trở lên.
-- npm.
-- MongoDB local hoặc MongoDB Atlas.
+## ⚙️ Requirements
 
-## Cài đặt
+- Node.js 18 or later
+- npm
+- MongoDB Atlas
 
-### 1. Cài backend
+---
+
+# 🚀 Installation
+
+## 1. Clone the repository
+
+```bash
+git clone https://github.com/TuMinhHung0778/test_intern_dev_srt_group.git
+
+cd test_intern_dev_srt_group
+```
+
+---
+
+## 2. Install backend dependencies
 
 ```bash
 cd backend
 npm install
 ```
 
-Tạo file `.env` trong thư mục `backend`:
+Create a `.env` file inside the `backend` folder:
 
 ```env
 PORT=5001
-MONGO_URI=mongodb://127.0.0.1:27017/srt_todo
+
+MONGODB_CONNECTIONSTRING=mongodb+srv://<username>:<password>@cluster.mongodb.net/todo_db
+
 NODE_ENV=development
 ```
 
-### 2. Cài frontend
+---
+
+## 3. Install frontend dependencies
 
 ```bash
 cd ../frontend
 npm install
 ```
 
-## Chạy dự án ở môi trường development
+Create a `.env` file inside the `frontend` folder:
 
-Mở terminal thứ nhất để chạy backend:
+```env
+VITE_API_URL=http://localhost:5001/api
+```
+
+---
+
+# ▶️ Run the Project
+
+## Start the backend server
 
 ```bash
 cd backend
+
 npm run dev
 ```
 
-Backend chạy tại:
+Backend URL:
 
-```txt
+```text
 http://localhost:5001
 ```
 
-Mở terminal thứ hai để chạy frontend:
+---
+
+## Start the frontend application
 
 ```bash
 cd frontend
+
 npm run dev
 ```
 
-Frontend chạy tại:
+Frontend URL:
 
-```txt
+```text
 http://localhost:5173
 ```
 
-## Build frontend
+---
+
+# 📦 Build the Frontend
 
 ```bash
 cd frontend
+
 npm run build
 ```
 
-## API endpoints
+---
+
+# 📡 REST API
 
 Base URL:
 
-```txt
+```text
 http://localhost:5001/api
 ```
 
-| Method | Endpoint              | Mô tả                   |
-| ------ | --------------------- | ----------------------- |
-| GET    | `/tasks?filter=today` | Lấy danh sách công việc |
-| POST   | `/tasks`              | Tạo công việc mới       |
-| PUT    | `/tasks/:id`          | Cập nhật công việc      |
-| DELETE | `/tasks/:id`          | Xóa công việc           |
+| Method | Endpoint              | Description            |
+| ------ | --------------------- | ---------------------- |
+| GET    | `/tasks?filter=all`   | Get all tasks          |
+| GET    | `/tasks?filter=today` | Get today's tasks      |
+| GET    | `/tasks?filter=week`  | Get this week's tasks  |
+| GET    | `/tasks?filter=month` | Get this month's tasks |
+| POST   | `/tasks`              | Create a new task      |
+| PUT    | `/tasks/:id`          | Update a task          |
+| DELETE | `/tasks/:id`          | Delete a task          |
 
-Giá trị `filter` hỗ trợ: `today`, `week`, `month`, `all`.
+---
 
-Ví dụ body tạo công việc:
+## Create Task
+
+Request Body:
 
 ```json
 {
-  "title": "Hoàn thiện bài test SRT Group"
+  "title": "Complete the SRT Group Intern Developer Test"
 }
 ```
 
-Ví dụ body cập nhật trạng thái:
+---
+
+## Update Task
+
+Request Body:
 
 ```json
 {
+  "title": "Complete the SRT Group Intern Developer Test",
   "status": "complete",
   "completedAt": "2026-07-06T12:00:00.000Z"
 }
 ```
 
-## Xử lý dữ liệu không hợp lệ
+---
 
-- Frontend không cho thêm hoặc lưu nhiệm vụ rỗng.
-- Backend kiểm tra `title` bắt buộc trước khi tạo/cập nhật.
-- Backend trả về `404` khi không tìm thấy nhiệm vụ cần cập nhật hoặc xóa.
-- Backend dùng enum cho trạng thái công việc: `active`, `complete`.
+## Supported Filter Values
 
-## Ghi chú
+| Value   | Description              |
+| ------- | ------------------------ |
+| `today` | Tasks created today      |
+| `week`  | Tasks created this week  |
+| `month` | Tasks created this month |
+| `all`   | All tasks                |
 
-Trong môi trường development, backend chỉ mở CORS cho frontend tại `http://localhost:5173`.
+---
 
-# test_intern_dev_srt_group
+# ✅ Validation
+
+### Frontend
+
+- Prevents users from creating an empty task.
+- Prevents users from saving an empty task.
+- Displays success and error notifications for user actions.
+
+### Backend
+
+- Validates that the `title` field is required.
+- Returns **404 Not Found** when a task does not exist.
+- Restricts the `status` field to:
+  - `active`
+  - `complete`
+
+---
+
+# 🌍 Deployment
+
+### Live Demo
+
+https://test-intern-dev-srt-group-1.onrender.com/
+
+### Frontend
+
+- Render
+
+### Backend
+
+- Render
+
+### Database
+
+- MongoDB Atlas
+
+---
+
+# 📝 Notes
+
+- The frontend and backend are separated and communicate through REST APIs.
+- During development, the backend only allows CORS requests from:
+
+```text
+http://localhost:5173
+```
+
+- All application data is stored in MongoDB Atlas.
+
+---
+
+# 👨‍💻 Author
+
+**Minh Hung Tu**
+
+GitHub:
+
+https://github.com/TuMinhHung0778
